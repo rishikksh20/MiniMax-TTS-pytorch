@@ -7,6 +7,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torchaudio
 
+# from -> https://github.com/neonbjb/tortoise-tts/blob/main/tortoise/models/xtransformers.py#L146
 class RelativePositionBias(nn.Module):
     def __init__(self, scale, causal=False, num_buckets=32, max_distance=128, heads=8):
         super().__init__()
@@ -49,7 +50,7 @@ class RelativePositionBias(nn.Module):
         bias = rearrange(values, 'i j h -> () h i j')
         return qk_dots + (bias * self.scale)
 
-
+# from -> https://github.com/neonbjb/tortoise-tts/blob/main/tortoise/models/arch_util.py
 def zero_module(module):
     """
     Zero out the parameters of a module and return it.
@@ -80,7 +81,6 @@ def normalization(channels):
         groups = int(groups / 2)
     assert groups > 2
     return GroupNorm32(groups, channels)
-
 
 class QKVAttentionLegacy(nn.Module):
     """
