@@ -3,6 +3,7 @@ import functools
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from core.attention import AttentionBlock
 # Learnable speaker encoder import from -> https://github.com/neonbjb/tortoise-tts/blob/main/tortoise/models/autoregressive.py#L204
 class ConditioningEncoder(nn.Module):
     def __init__(self,
